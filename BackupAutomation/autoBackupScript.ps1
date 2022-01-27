@@ -9,7 +9,15 @@ $vmlist = Get-Content .\vmlist.txt
 $vault = Get-AzRecoveryServicesVault -ResourceGroupName $rgname -Name $rsname
 Set-AzRecoveryServicesAsrVaultContext -Vault $vault
 
-foreach($vmname in $vmlist){
+foreach($vm in $vmlist){
+    $vmname = $vm.Split(",")[0]
+    Write-Host $vmname.GetType()
+    $retentiondays = 30
+
+    # 本番環境でなければ保持日数を14日にする
+    if($vm.Split(",")[1] -ne "prod"){
+        $retentiondays = 14
+    }
     # バックアップコンテナの指定
     $backupcontainer = Get-AzRecoveryServicesBackupContainer `
     -ContainerType "AzureVM" `
@@ -20,6 +28,9 @@ foreach($vmname in $vmlist){
     -Container $backupcontainer `
     -WorkloadType "AzureVM"
 
-    # オンデマンドバックアップの開始
-    Backup-AzRecoveryServicesBackupItem -Item $item
+    # 保持期間の設定
+    $expirydate = (Get-Date).ToUniversalTime().AddDays($retentiondays)
+
+    # $itemに対するバックアップの開始
+    Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $expirydate
 }

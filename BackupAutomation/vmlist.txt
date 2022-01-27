@@ -1,2 +1,2 @@
-aaam-linux01
-aaam-win02
+aaam-linux01,prod
+backuptestvm,dev
