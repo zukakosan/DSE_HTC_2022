@@ -1,0 +1,2 @@
+aaam-linux01
+aaam-win02
