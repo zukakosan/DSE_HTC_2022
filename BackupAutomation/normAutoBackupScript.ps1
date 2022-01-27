@@ -11,7 +11,6 @@ Set-AzRecoveryServicesAsrVaultContext -Vault $vault
 
 foreach($vm in $vmlist){
     $vmname = $vm.Split(",")[0]
-    Write-Host $vmname.GetType()
     $retentiondays = 30
 
     # 本番環境でなければ保持日数を14日にする
