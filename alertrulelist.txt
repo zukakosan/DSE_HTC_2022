@@ -1,0 +1,2 @@
+AVDTESTRG,testlogalertrule,Log
+AVDTESTRG,testlogalertrule,Log

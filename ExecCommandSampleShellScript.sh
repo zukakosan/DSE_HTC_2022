@@ -1,0 +1,2 @@
+pwd
+touch frommypc.txt
