@@ -33,3 +33,5 @@ foreach($vm in $vmlist){
     # $itemに対するバックアップの開始
     Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $expirydate
 }
+
+# .\jobStatusCheckScript.ps1

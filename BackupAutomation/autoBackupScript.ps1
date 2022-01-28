@@ -34,4 +34,4 @@ foreach($vm in $vmlist){
     Backup-AzRecoveryServicesBackupItem -Item $item -ExpiryDateTimeUTC $expirydate
 }
 
-.\jobStatusCheckScript.ps1
+# .\jobStatusCheckScript.ps1
