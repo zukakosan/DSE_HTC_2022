@@ -6,7 +6,8 @@ foreach($rule in $rulelist){
     $rgname = $rule.Split(",")[0]
     $alertrulename = $rule.Split(",")[1]
     $alerttype = $rule.Split(",")[2]
-
+    
+    # シグナルのタイプごとにコマンドが異なるため条件分岐 
     if ($alerttype -eq "Metric"){
         Get-AzMetricAlertRuleV2 -Name $alertrulename -ResourceGroupName $rgname | Add-AzMetricAlertRuleV2
     }elseif($alerttype -eq "Log"){
