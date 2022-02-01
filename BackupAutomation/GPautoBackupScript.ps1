@@ -5,9 +5,10 @@ $rgname = "<YOUR-RESOURCEGROUP-NAME>"
 $rsname = "<YOUR-RECOVERYSERVICE-VAULT-NAME>"
 $vmlist = Get-Content .\vmlist.txt
 
-#Get-AzRecoveryServicesBackupContainer実行前にcontextの設定が必要
+# Get-AzRecoveryServicesBackupContainer実行前にcontextの設定が必要
+# Set-AzRecoveryServicesAsrVaultContextではなくSet-AzRecoveryServicesVaultContextを使う
 $vault = Get-AzRecoveryServicesVault -ResourceGroupName $rgname -Name $rsname
-Set-AzRecoveryServicesAsrVaultContext -Vault $vault
+Set-AzRecoveryServicesVaultContext -Vault $vault
 
 foreach($vm in $vmlist){
     $vmname = $vm.Split(",")[0]

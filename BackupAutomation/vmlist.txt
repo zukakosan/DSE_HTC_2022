@@ -1,2 +1,1 @@
 aaam-linux01,prod
-backuptestvm,dev

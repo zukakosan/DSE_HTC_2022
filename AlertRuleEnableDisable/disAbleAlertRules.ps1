@@ -6,6 +6,10 @@ foreach($rule in $rulelist){
     $rgname = $rule.Split(",")[0]
     $alertrulename = $rule.Split(",")[1]
     $alerttype = $rule.Split(",")[2]
+
+    $rgname
+    $alertrulename
+    $alerttype
     
     # シグナルのタイプごとにコマンドが異なるため条件分岐 
     if ($alerttype -eq "Metric"){
