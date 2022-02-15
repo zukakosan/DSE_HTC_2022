@@ -1,0 +1,2 @@
+AAAM-rg,aaam-linux01
+AAAM-rg,aaam-win02
