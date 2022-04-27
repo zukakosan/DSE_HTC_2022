@@ -1,0 +1,10 @@
+[
+    {
+    "rgname":"AAAM-rg",
+    "vmname":"aaam-linux01"
+    },
+    {
+    "rgname":"AAAM-rg",
+    "vmname":"aaam-win02"
+    }
+]
