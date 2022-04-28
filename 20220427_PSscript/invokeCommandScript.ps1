@@ -4,7 +4,9 @@ $Return = Invoke-Command -ComputerName "localhost","10.21.0.6" -ScriptBlock {dir
 # echo $Return
 Get-Job
 # Get Jobs
-$Jobs = Get-Job
+# $Jobs = Get-Job
+# Use "-IncludeChildJob" option if you want
+$Jobs = Get-Job -IncludeChildJob
 do{
     # Running Jobs 
     $RunningJobs = $Jobs | ?{ $_.State -eq "Running"}
