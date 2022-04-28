@@ -1,4 +1,6 @@
-$Return = Invoke-Command {localhost} -ScriptBlock {dir c:\} -AsJob
+$Return = Invoke-Command -ComputerName "localhost","10.21.0.6" -ScriptBlock {dir c:\} -AsJob
+# $Return = Invoke-Command -ComputerName "localhost" -ScriptBlock {dir c:\} -AsJob
+
 # echo $Return
 Get-Job
 # Get Jobs
