@@ -1,11 +1,11 @@
 # 操作対象VMのリストを読み込み
-$vmlist = Get-Content InvokeCommandVmlist.txt
+$vmlist = Get-Content "xxxVMLISTxxx.txt"
 # 各VMに対してInvoke-AzVMRunCommandを実行
 foreach($vm in $vmlist){
     $rgname = $vm.Split(",")[0]
     $vmname = $vm.Split(",")[1]
     # -ScriptPathパラメータの値に実行するスクリプトへのパスを格納
-    Invoke-AzVMRunCommand -ResourceGroupName $rgname -VMName $vmname -CommandId "RunPowerShellScript" -ScriptPath "dirscript.ps1" -AsJob
+    Invoke-AzVMRunCommand -ResourceGroupName $rgname -VMName $vmname -CommandId "RunPowerShellScript" -ScriptPath "xxxSCRIPTforRUNxxx.ps1" -AsJob
 } 
 # 実行中のジョブが残っている間は繰り返し実行
 # RunningJobsはループ内で定義しているためdo-whileで対応
