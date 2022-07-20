@@ -25,19 +25,20 @@ $childJobList += $childJob
 Write-Output $childJobList
 
 # 実行中ジョブの状況確認
+# "Completed"の数が子ジョブと同じになるまで繰り返し
 do{
-	$compCount = 0
+	$completedCount = 0
 	Write-Output "Checking Job Status..."
 	foreach($cj in $childJobList){
 		$Job = Get-AzAutomationJob -Id $cj.JobId -AutomationAccountName $autoAccName -ResourceGroupName $rgName
 		$Job.Status
 		if($Job.Status -eq "Completed"){
-			$compCount += 1
+			$completedCount += 1
 		}
 	}
-	Write-Output $compCount
+	Write-Output $completedCount
 	sleep 5
-}while($compCount -ne $childJobList.Count)
+}while($completedCount -ne $childJobList.Count)
 
 # ジョブ出力確認
 $childJobOutputList = @()
@@ -45,4 +46,6 @@ foreach($cj in $childJobList){
 	$cj_output = Get-AzAutomationJobOutput -AutomationAccountName $autoAccName -Id $cj.JobId -ResourceGroupName $rgName
 	$childJobOutputList += $cj_output
 }
+
+# 出力の取得
 Write-Output $childJobOutputList
