@@ -11,12 +11,11 @@ $autoAccName = "htc-auto-acc"
 
 # 引数を渡したい場合は別途構成する
 # $params = @{"xxxx"="yyyy";"aaaa"="bbbb"}
-# execute child runbook
 
 # 子Runbookのジョブ管理用配列
 $childJobList = @()
 # 以下直書きではなくRunbookの変数等を使ってForeachでStartさせる
-# Runbookの並列実行(-Waitオプションなし)
+# 子Runbookの並列実行(-Waitオプションなし)
 $childJob = Start-AzAutomationRunbook -AutomationAccountName $autoAccName -Name $runbookName -ResourceGroupName $rgName -DefaultProfile $AzureContext # -Wait
 $childJobList += $childJob
 $childJob = Start-AzAutomationRunbook -AutomationAccountName $autoAccName -Name $runbookName2 -ResourceGroupName $rgName -DefaultProfile $AzureContext # -Wait
@@ -43,8 +42,8 @@ do{
 # ジョブ出力確認
 $childJobOutputList = @()
 foreach($cj in $childJobList){
-	$cj_output = Get-AzAutomationJobOutput -AutomationAccountName $autoAccName -Id $cj.JobId -ResourceGroupName $rgName
-	$childJobOutputList += $cj_output
+	$cj_output = Get-AzAutomationJobOutput -AutomationAccountName $autoAccName -Id $cj.JobId -ResourceGroupName $rgName -Stream "Output" | Get-AzAutomationJobOutputRecord
+	$childJobOutputList += $cj_output.Value
 }
 
 # 出力の取得
