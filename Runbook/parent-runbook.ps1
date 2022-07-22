@@ -43,6 +43,7 @@ do{
 $childJobOutputList = @()
 foreach($cj in $childJobList){
 	$cj_output = Get-AzAutomationJobOutput -AutomationAccountName $autoAccName -Id $cj.JobId -ResourceGroupName $rgName -Stream "Output" | Get-AzAutomationJobOutputRecord
+	# Get-AzAutomationJobOutputRecordの戻り値からジョブの出力ストリームを取り出し、リストに追加
 	$childJobOutputList += $cj_output.Value
 }
 
