@@ -5,8 +5,8 @@ $AzureContext = Set-AzContext -SubscriptionName $AzureContext.Subscription -Defa
 
 # 変数
 $rgName = "HITACHI-DEMO-rg"
-$runbookName = "child-vmstart-com"
-$runbookName2 = "child-vmstart-com2"
+$runbookName = "child-vmstart-01"
+$runbookName2 = "child-vmstart-02"
 $autoAccName = "htc-auto-acc"
 
 # 引数を渡したい場合は別途構成する
